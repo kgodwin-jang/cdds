@@ -47,6 +47,82 @@ function initializeScrollReveals() {
 function initializeStickyNavbar() {
     const navbar = document.getElementById('navbar');
     const scrollThreshold = 50;
+    const sections = document.querySelectorAll('section[id]');
+
+    let heroTheme = 'light';
+
+    function getCurrentSection() {
+        const probePosition = navbar.offsetHeight + 20;
+        let currentSection = 'home';
+
+        sections.forEach(section => {
+            const sectionRect = section.getBoundingClientRect();
+
+            if (sectionRect.top <= probePosition && sectionRect.bottom > probePosition) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        return currentSection;
+    }
+
+    function applyNavbarTheme() {
+        const currentSection = getCurrentSection();
+        navbar.dataset.theme = currentSection === 'home' ? heroTheme : 'light';
+    }
+
+    function updateNavbarState() {
+        const scrollPosition = window.scrollY;
+
+        if (scrollPosition > scrollThreshold) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        applyNavbarTheme();
+    }
+
+    const heroImage = new Image();
+    heroImage.src = 'assets/hero_bg.png';
+    heroImage.onload = () => {
+        try {
+            const canvas = document.createElement('canvas');
+            const sampleSize = 24;
+            canvas.width = sampleSize;
+            canvas.height = sampleSize;
+
+            const context = canvas.getContext('2d', { willReadFrequently: true });
+            context.drawImage(heroImage, 0, 0, sampleSize, sampleSize);
+
+            const imageData = context.getImageData(0, 0, sampleSize, sampleSize).data;
+            let totalLuminance = 0;
+            let pixelCount = 0;
+
+            for (let index = 0; index < imageData.length; index += 4) {
+                const red = imageData[index];
+                const green = imageData[index + 1];
+                const blue = imageData[index + 2];
+                const alpha = imageData[index + 3] / 255;
+
+                if (alpha > 0) {
+                    totalLuminance += (0.2126 * red + 0.7152 * green + 0.0722 * blue) * alpha;
+                    pixelCount += 1;
+                }
+            }
+
+            const averageLuminance = pixelCount ? totalLuminance / pixelCount : 255;
+            heroTheme = averageLuminance < 150 ? 'dark' : 'light';
+        } catch (error) {
+            heroTheme = 'light';
+        }
+
+        applyNavbarTheme();
+    };
+    heroImage.onerror = () => {
+        heroTheme = 'light';
+        applyNavbarTheme();
+    };
 
     window.addEventListener('scroll', () => {
         const scrollPosition = window.scrollY;
@@ -56,7 +132,12 @@ function initializeStickyNavbar() {
         } else {
             navbar.classList.remove('scrolled');
         }
+
+        applyNavbarTheme();
     });
+
+    window.addEventListener('resize', debounce(applyNavbarTheme, 100));
+    updateNavbarState();
 }
 
 // ====================== ANIMATED COUNTER =====================
@@ -187,7 +268,7 @@ function initializeContactForm() {
             const originalText = submitButton.textContent;
 
             submitButton.textContent = 'Message Sent! ✓';
-            submitButton.style.backgroundColor = '#10B981';
+            submitButton.style.backgroundColor = '#0A4174';
             submitButton.disabled = true;
 
             // Reset after 3 seconds
