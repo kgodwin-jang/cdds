@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Pulse - Breaking News & Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-dark: #1A1A1A;
+            --color-red: #E2231A;
+            --color-white: #FFFFFF;
+            --color-light-gray: #F4F4F4;
+            --color-border: #EAEAEA;
+            --color-text-gray: #9A9A9A;
+            --color-heading: #1A1A1A;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-white);
+            color: var(--color-heading);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        header {
+            background-color: var(--color-dark);
+            color: var(--color-white);
+            position: relative;
+        }
+
+        .masthead {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .masthead-left {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .masthead-title {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-align: center;
+            flex: 1;
+            margin: 0 20px;
+        }
+
+        .masthead-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .social-icon {
+            color: var(--color-white);
+            font-size: 16px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--color-red);
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 16px 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-red);
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 30px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-story {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--color-light-gray);
+        }
+
+        .hero-story img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--color-white);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background-color: var(--color-red);
+            color: var(--color-white);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            width: fit-content;
+        }
+
+        .hero-headline {
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .hero-meta {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .play-button {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(226, 35, 26, 0.3);
+        }
+
+        .secondary-stories {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .secondary-card {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            transition: box-shadow 0.3s, transform 0.3s;
+            flex-wrap: wrap;
+        }
+
+        .secondary-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .secondary-thumb {
+            width: 100px;
+            min-width: 100px;
+            height: 100px;
+            border-radius: 6px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .secondary-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .secondary-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .secondary-headline {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.3;
+            color: var(--color-heading);
+        }
+
+        .secondary-headline:hover {
+            color: var(--color-red);
+        }
+
+        .secondary-meta {
+            font-size: 11px;
+            color: var(--color-text-gray);
+        }
+
+        .section-heading {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-heading .red-word {
+            color: var(--color-red);
+        }
+
+        .section-heading .more-icon {
+            margin-left: auto;
+            cursor: pointer;
+            color: var(--color-text-gray);
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .section-heading .more-icon:hover {
+            color: var(--color-heading);
+        }
+
+        .trending-section {
+            padding: 30px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 30px;
+        }
+
+        .trending-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .story-card {
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s, transform 0.3s;
+            background-color: var(--color-white);
+        }
+
+        .story-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .card-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background-color: var(--color-light-gray);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-icon {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            background-color: var(--color-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-size: 14px;
+        }
+
+        .card-content {
+            padding: 16px;
+        }
+
+        .card-headline {
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 1.3;
+            color: var(--color-heading);
+            margin-bottom: 8px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .card-headline:hover {
+            color: var(--color-red);
+        }
+
+        .card-snippet {
+            font-size: 12px;
+            color: var(--color-text-gray);
+            margin-bottom: 12px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--color-text-gray);
+            padding-top: 12px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .card-meta-left {
+            display: flex;
+            gap: 6px;
+        }
+
+        .card-meta-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .icon-with-count {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .icon-with-count:hover {
+            color: var(--color-red);
+        }
+
+        .sidebar {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .latest-item {
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .latest-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .latest-timestamp {
+            font-size: 10px;
+            font-weight: bold;
+            color: var(--color-red);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .latest-headline {
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.3;
+            color: var(--color-heading);
+        }
+
+        .latest-headline:hover {
+            color: var(--color-red);
+        }
+
+        .featured-section {
+            background-color: var(--color-light-gray);
+            padding: 30px 40px;
+            margin-top: 30px;
+        }
+
+        .featured-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .featured-heading {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .featured-carousel {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .carousel-arrow {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-white);
+            border: 1px solid var(--color-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .carousel-arrow:hover {
+            background-color: var(--color-red);
+            border-color: var(--color-red);
+            color: var(--color-white);
+        }
+
+        .carousel-content {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            flex: 1;
+            padding: 0 10px;
+        }
+
+        .carousel-content::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .carousel-content::-webkit-scrollbar-track {
+            background: var(--color-border);
+            border-radius: 3px;
+        }
+
+        .carousel-content::-webkit-scrollbar-thumb {
+            background: var(--color-red);
+            border-radius: 3px;
+        }
+
+        .featured-card {
+            flex: 0 0 220px;
+            background-color: var(--color-white);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .featured-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-image {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            background-color: var(--color-border);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-card-content {
+            padding: 12px;
+        }
+
+        .featured-card-tag {
+            display: inline-block;
+            background-color: var(--color-red);
+            color: var(--color-white);
+            padding: 4px 8px;
+            border-radius: 2px;
+            font-size: 9px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 5;
+        }
+
+        .featured-card-headline {
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 1.2;
+            color: var(--color-heading);
+            margin-bottom: 6px;
+        }
+
+        .featured-card-headline:hover {
+            color: var(--color-red);
+        }
+
+        .featured-card-meta {
+            font-size: 10px;
+            color: var(--color-text-gray);
+            margin-bottom: 8px;
+        }
+
+        .featured-card-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 8px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .featured-card-icon {
+            cursor: pointer;
+            color: var(--color-text-gray);
+            transition: color 0.3s;
+        }
+
+        .featured-card-icon:hover {
+            color: var(--color-red);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 24px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--color-dark);
+            flex-direction: column;
+            padding: 20px;
+            gap: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav .nav-link {
+            padding: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .masthead {
+                padding: 16px 20px;
+                flex-wrap: wrap;
+            }
+
+            .masthead-title {
+                font-size: 20px;
+                letter-spacing: 2px;
+                flex-basis: 100%;
+                margin: 12px 0;
+                order: 3;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 1;
+            }
+
+            .masthead-left {
+                display: flex;
+                order: 1;
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .masthead-left .fa-search {
+                display: none;
+            }
+
+            .masthead-right {
+                order: 2;
+                gap: 12px;
+            }
+
+            .nav-bar {
+                display: none;
+            }
+
+            .hero-section {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .secondary-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .secondary-thumb {
+                width: 100%;
+                min-width: auto;
+                height: 180px;
+            }
+
+            .secondary-content {
+                width: 100%;
+            }
+
+            .secondary-stories {
+                order: -1;
+            }
+
+            .trending-section {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .trending-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sidebar {
+                order: 2;
+            }
+
+            .featured-section {
+                padding: 20px;
+            }
+
+            .featured-carousel {
+                gap: 12px;
+            }
+
+            .carousel-arrow {
+                display: none;
+            }
+
+            .featured-card {
+                flex: 0 0 210px;
+                min-width: 210px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .masthead {
+                padding: 12px 16px;
+            }
+
+            .masthead-title {
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            .masthead-right {
+                gap: 8px;
+            }
+
+            .social-icon {
+                font-size: 14px;
+            }
+
+            .hero-section {
+                padding: 16px;
+            }
+
+            .hero-overlay {
+                padding: 18px;
+            }
+
+            .hero-headline {
+                font-size: 24px;
+            }
+
+            .secondary-thumb {
+                height: 160px;
+            }
+
+            .trending-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            .featured-section {
+                padding: 16px;
+            }
+
+            .carousel-content {
+                gap: 14px;
+                padding: 0;
+            }
+
+            .featured-card {
+                flex: 0 0 75%;
+                min-width: 180px;
+            }
+
+            .card-content {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Masthead -->
+    <header>
+        <div class="masthead">
+            <div class="masthead-left">
+                <button class="hamburger" id="hamburgerBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <i class="fas fa-search" style="cursor: pointer;"></i>
+            </div>
+            <div class="masthead-title">THE DAILY PULSE</div>
+            <div class="masthead-right">
+                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <i class="fas fa-user" style="cursor: pointer;"></i>
+            </div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <nav class="nav-bar" id="navBar">
+            <a href="#" class="nav-link">World</a>
+            <a href="#" class="nav-link">Entertainment</a>
+            <a href="#" class="nav-link">Sports</a>
+            <a href="#" class="nav-link">Technology</a>
+            <a href="#" class="nav-link">Business</a>
+            <a href="#" class="nav-link">Opinion</a>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="#" class="nav-link">World</a>
+            <a href="#" class="nav-link">Entertainment</a>
+            <a href="#" class="nav-link">Sports</a>
+            <a href="#" class="nav-link">Technology</a>
+            <a href="#" class="nav-link">Business</a>
+            <a href="#" class="nav-link">Opinion</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Hero Story -->
+        <article class="hero-story">
+            <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=800&h=500&fit=crop" alt="Breaking news story about global affairs">
+            <div class="hero-overlay">
+                <span class="category-tag">Breaking News</span>
+                <h1 class="hero-headline">Global Leaders Convene for Historic Climate Summit</h1>
+                <p class="hero-meta">Reuters · Updated 2 hours ago</p>
+            </div>
+            <div class="play-button" title="Watch video">
+                <i class="fas fa-play"></i>
+            </div>
+        </article>
+
+        <!-- Secondary Stories Stack -->
+        <div class="secondary-stories">
+            <article class="secondary-card">
+                <div class="secondary-thumb">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=150&h=150&fit=crop" alt="Technology breakthrough announcement">
+                </div>
+                <div class="secondary-content">
+                    <h3 class="secondary-headline">AI Breakthrough: New Model Achieves Unprecedented Results</h3>
+                    <p class="secondary-meta">TechNews · 45 mins ago</p>
+                </div>
+            </article>
+
+            <article class="secondary-card">
+                <div class="secondary-thumb">
+                    <img src="https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=150&h=150&fit=crop" alt="Sports event highlights">
+                </div>
+                <div class="secondary-content">
+                    <h3 class="secondary-headline">Championship Game Ends in Thrilling Overtime Victory</h3>
+                    <p class="secondary-meta">Sports Desk · 1 hour ago</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Trending Stories Section -->
+    <section class="trending-section">
+        <div>
+            <h2 class="section-heading">
+                <span>Trending</span>
+                <span class="red-word">Stories</span>
+            </h2>
+
+            <!-- Trending Grid -->
+            <div class="trending-grid">
+                <!-- Card 1 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop" alt="Market trends affecting global economy">
+                        <span class="play-icon"><i class="fas fa-play"></i></span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">Stock Markets Rally on Positive Economic Data</h3>
+                        <p class="card-snippet">Investors show confidence as unemployment rates drop...</p>
+                        <div class="card-meta">
+                            <span>3 mins ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 284</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" alt="Celebrity news and entertainment updates">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">Hollywood Star Announces New Film Project</h3>
+                        <p class="card-snippet">Award-winning director teams up for ambitious sci-fi epic...</p>
+                        <div class="card-meta">
+                            <span>15 mins ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 567</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Health and wellness news">
+                        <span class="play-icon"><i class="fas fa-play"></i></span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">New Study Reveals Benefits of Mediterranean Diet</h3>
+                        <p class="card-snippet">Research shows significant health improvements in test group...</p>
+                        <div class="card-meta">
+                            <span>28 mins ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 1.2K</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop" alt="Social media trends and viral content">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">Viral Challenge Takes Over Social Media Platforms</h3>
+                        <p class="card-snippet">Millions participate in latest internet phenomenon trending...</p>
+                        <div class="card-meta">
+                            <span>32 mins ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 2.5K</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400&h=300&fit=crop" alt="Weather and climate updates">
+                        <span class="play-icon"><i class="fas fa-play"></i></span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">Extreme Weather Events Impact Multiple Regions</h3>
+                        <p class="card-snippet">Emergency services respond to unprecedented conditions...</p>
+                        <div class="card-meta">
+                            <span>44 mins ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 892</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 6 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=300&fit=crop" alt="Sports championship coverage">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">Tennis Legend Retires After Final Tournament</h3>
+                        <p class="card-snippet">Icon of the sport bids farewell after remarkable career...</p>
+                        <div class="card-meta">
+                            <span>1 hour ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 1.8K</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 7 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop" alt="Space exploration news">
+                        <span class="play-icon"><i class="fas fa-play"></i></span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">Historic Space Mission Launches Successfully</h3>
+                        <p class="card-snippet">International collaboration marks new era in exploration...</p>
+                        <div class="card-meta">
+                            <span>1 hour ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 3.1K</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 8 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1500454709806-8cc03515d658?w=400&h=300&fit=crop" alt="Politics and government news">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">New Policy Framework Announced by Administration</h3>
+                        <p class="card-snippet">Comprehensive plan addresses key issues facing the nation...</p>
+                        <div class="card-meta">
+                            <span>1 hour ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 2.3K</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 9 -->
+                <article class="story-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&h=300&fit=crop" alt="Food and restaurant reviews">
+                        <span class="play-icon"><i class="fas fa-play"></i></span>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-headline">Top Chef Opens Revolutionary New Restaurant</h3>
+                        <p class="card-snippet">Culinary innovation brings fusion cuisine to the city...</p>
+                        <div class="card-meta">
+                            <span>2 hours ago</span>
+                            <div class="card-meta-icons">
+                                <span class="icon-with-count"><i class="fas fa-comment"></i> 945</span>
+                                <span class="icon-with-count"><i class="fas fa-bookmark"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <!-- Sidebar: Latest Stories -->
+        <aside class="sidebar">
+            <h3 class="section-heading">
+                <span>Latest</span>
+                <span class="red-word">Stories</span>
+            </h3>
+
+            <div class="latest-item">
+                <div class="latest-timestamp">5 mins ago</div>
+                <h4 class="latest-headline">Breaking: International Trade Agreement Signed</h4>
+            </div>
+
+            <div class="latest-item">
+                <div class="latest-timestamp">12 mins ago</div>
+                <h4 class="latest-headline">Tech Company Reports Record Quarterly Earnings</h4>
+            </div>
+
+            <div class="latest-item">
+                <div class="latest-timestamp">18 mins ago</div>
+                <h4 class="latest-headline">New Discovery in Medical Research Fields</h4>
+            </div>
+
+            <div class="latest-item">
+                <div class="latest-timestamp">35 mins ago</div>
+                <h4 class="latest-headline">Major City Announces Infrastructure Project</h4>
+            </div>
+
+            <div class="latest-item">
+                <div class="latest-timestamp">48 mins ago</div>
+                <h4 class="latest-headline">Sports Team Secures Championship Victory</h4>
+            </div>
+
+            <div class="latest-item">
+                <div class="latest-timestamp">1 hour ago</div>
+                <h4 class="latest-headline">Cultural Event Draws Record Attendance</h4>
+            </div>
+
+            <div class="latest-item">
+                <div class="latest-timestamp">1 hour ago</div>
+                <h4 class="latest-headline">Environmental Conservation Group Unveils Initiative</h4>
+            </div>
+
+            <div class="latest-item">
+                <div class="latest-timestamp">2 hours ago</div>
+                <h4 class="latest-headline">Education Reform Bill Passes Committee Vote</h4>
+            </div>
+        </aside>
+    </section>
+
+    <!-- Featured News Strip -->
+    <section class="featured-section">
+        <div class="featured-container">
+            <div class="featured-heading">
+                <span><span class="red-word">Featured</span> News</span>
+                <i class="fas fa-ellipsis-h more-icon"></i>
+            </div>
+
+            <div class="featured-carousel">
+                <button class="carousel-arrow" id="carouselPrev" title="Previous">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="carousel-content" id="carouselContent">
+                    <!-- Featured Card 1 -->
+                    <article class="featured-card">
+                        <div class="featured-image">
+                            <img src="https://images.unsplash.com/photo-1557821552-17105176677c?w=250&h=250&fit=crop" alt="Technology innovation story">
+                            <span class="featured-card-tag">Technology</span>
+                        </div>
+                        <div class="featured-card-content">
+                            <h4 class="featured-card-headline">Next Generation Devices Unveiled</h4>
+                            <p class="featured-card-meta">TechReview · 2h ago</p>
+                            <div class="featured-card-footer">
+                                <i class="fas fa-bookmark featured-card-icon"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured Card 2 -->
+                    <article class="featured-card">
+                        <div class="featured-image">
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=250&h=250&fit=crop" alt="Space exploration achievement">
+                            <span class="featured-card-tag">Science</span>
+                        </div>
+                        <div class="featured-card-content">
+                            <h4 class="featured-card-headline">Mars Rover Makes Groundbreaking Discovery</h4>
+                            <p class="featured-card-meta">SpaceNews · 3h ago</p>
+                            <div class="featured-card-footer">
+                                <i class="fas fa-bookmark featured-card-icon"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured Card 3 -->
+                    <article class="featured-card">
+                        <div class="featured-image">
+                            <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=250&h=250&fit=crop" alt="Sports championship event">
+                            <span class="featured-card-tag">Sports</span>
+                        </div>
+                        <div class="featured-card-content">
+                            <h4 class="featured-card-headline">Champion Athlete Breaks World Record</h4>
+                            <p class="featured-card-meta">SportsToday · 4h ago</p>
+                            <div class="featured-card-footer">
+                                <i class="fas fa-bookmark featured-card-icon"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured Card 4 -->
+                    <article class="featured-card">
+                        <div class="featured-image">
+                            <img src="https://images.unsplash.com/photo-1491438639603-92d25f384e6f?w=250&h=250&fit=crop" alt="Entertainment industry news">
+                            <span class="featured-card-tag">Entertainment</span>
+                        </div>
+                        <div class="featured-card-content">
+                            <h4 class="featured-card-headline">Film Festival Unveils Award Winners</h4>
+                            <p class="featured-card-meta">Entertainment · 5h ago</p>
+                            <div class="featured-card-footer">
+                                <i class="fas fa-bookmark featured-card-icon"></i>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Featured Card 5 -->
+                    <article class="featured-card">
+                        <div class="featured-image">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=250&h=250&fit=crop" alt="Financial market trends">
+                            <span class="featured-card-tag">Business</span>
+                        </div>
+                        <div class="featured-card-content">
+                            <h4 class="featured-card-headline">Markets Surge on Economic Outlook</h4>
+                            <p class="featured-card-meta">Finance · 6h ago</p>
+                            <div class="featured-card-footer">
+                                <i class="fas fa-bookmark featured-card-icon"></i>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <button class="carousel-arrow" id="carouselNext" title="Next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer Modal -->
+    <div id="disclaimerModal" style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    ">
+        <div style="
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        ">
+            <div style="
+                width: 60px;
+                height: 60px;
+                background-color: #E2231A;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 auto 24px;
+                color: white;
+                font-size: 32px;
+            ">
+                <i class="fas fa-exclamation"></i>
+            </div>
+            <h2 style="
+                font-size: 24px;
+                font-weight: bold;
+                color: #1A1A1A;
+                margin-bottom: 16px;
+                margin-top: 0;
+            ">Demo Site Notice</h2>
+            <p style="
+                color: #9A9A9A;
+                font-size: 15px;
+                line-height: 1.6;
+                margin-bottom: 24px;
+            ">
+                This is a demonstration website showcasing a newspaper/news agency homepage design. 
+                <strong>All functionalities are not implemented</strong> and the information displayed on this page may not be accurate. 
+                All content is for <strong>visual design purposes only</strong>.
+            </p>
+            <button id="disclaimerClose" style="
+                background-color: #E2231A;
+                color: white;
+                border: none;
+                padding: 12px 32px;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: 6px;
+                cursor: pointer;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: background-color 0.3s;
+            " onmouseover="this.style.backgroundColor='#c41a14'" onmouseout="this.style.backgroundColor='#E2231A'">
+                I Understand
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Disclaimer Modal Handler
+        window.addEventListener('load', () => {
+            const disclaimerModal = document.getElementById('disclaimerModal');
+            disclaimerModal.style.display = 'flex';
+        });
+
+        document.getElementById('disclaimerClose').addEventListener('click', () => {
+            const disclaimerModal = document.getElementById('disclaimerModal');
+            disclaimerModal.style.display = 'none';
+        });
+
+        // Allow closing with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const disclaimerModal = document.getElementById('disclaimerModal');
+                if (disclaimerModal.style.display !== 'none') {
+                    disclaimerModal.style.display = 'none';
+                }
+            }
+        });
+
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileNav.querySelectorAll('.nav-link');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Featured Carousel
+        const carouselContent = document.getElementById('carouselContent');
+        const carouselPrev = document.getElementById('carouselPrev');
+        const carouselNext = document.getElementById('carouselNext');
+
+        carouselPrev.addEventListener('click', () => {
+            carouselContent.scrollBy({ left: -260, behavior: 'smooth' });
+        });
+
+        carouselNext.addEventListener('click', () => {
+            carouselContent.scrollBy({ left: 260, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        });
+
+        // Add hover effects for interactive elements
+        document.querySelectorAll('.icon-with-count, .featured-card-icon').forEach(element => {
+            element.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Placeholder for bookmark/comment functionality
+            });
+        });
+
+        // Play button interactions
+        document.querySelectorAll('.play-button, .play-icon').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Placeholder for video modal
+                console.log('Video would open here');
+            });
+        });
+    </script>
+</body>
+</html>

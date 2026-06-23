@@ -5,8 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; frame-ancestors 'none';">
-  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://embed.tawk.to https://tawk.to https://*.tawk.to https://*.tawkcdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://embed.tawk.to https://tawk.to https://*.tawk.to https://*.tawkcdn.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com https://embed.tawk.to https://tawk.to https://*.tawk.to https://*.tawkcdn.com; font-src 'self' https://fonts.gstatic.com https://embed.tawk.to https://tawk.to https://*.tawk.to https://*.tawkcdn.com; img-src 'self' https: data: https://embed.tawk.to https://tawk.to https://*.tawk.to https://*.tawkcdn.com; connect-src 'self' https://formspree.io https://api.formspree.io https://embed.tawk.to https://tawk.to https://va.tawk.to https://*.tawk.to https://*.tawkcdn.com wss: wss://*.tawk.to wss://vsb*.tawk.to; frame-src https://embed.tawk.to https://tawk.to https://*.tawk.to https://*.tawkcdn.com;">
   <title>Complete Digital Design Solutions (CDDS) | Web & Mobile Development in Ghana</title>
   <meta name="description" content="Complete Digital Design Solutions delivers premium web, mobile and digital solutions from Accra, Ghana. Performance, security and growth for African businesses.">
   <link rel="canonical" href="https://www.cdds.com.gh/">
@@ -35,7 +34,7 @@
         "contactPoint": [
           {
             "@type": "ContactPoint",
-            "telephone": "+233 XX XXX XXXX",
+            "telephone": "0533496396",
             "contactType": "customer service",
             "areaServed": "GH",
             "availableLanguage": ["English"]
@@ -53,7 +52,7 @@
         "@type": "LocalBusiness",
         "name": "Complete Digital Design Solutions (CDDS)",
         "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200",
-        "telephone": "+233 XX XXX XXXX",
+        "telephone": "0533496396",
         "priceRange": "GHS",
         "address": {
           "@type": "PostalAddress",
@@ -107,8 +106,9 @@
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="spinner" aria-label="Loading"></div>
   </div>
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
-  <header class="site-header" id="home">
+  <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#home">
         <img src="assets/logo.png" alt="CDDS logo" class="brand-logo" loading="lazy">
@@ -126,23 +126,26 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="header-actions">
-        <a class="contact-phone" href="tel:+233XX XXX XXXX">+233 XX XXX XXXX</a>
-        <a class="button button-secondary" href="#contact">Get a Quote</a>
+        <a class="contact-phone" href="tel:0533496396">0533496396</a>
+        <a class="button button-secondary" data-project="">Get a Quote</a>
         <button class="toggle-theme" type="button" aria-label="Toggle dark mode">☀️</button>
       </div>
     </div>
   </header>
 
+  <!-- Dedicated home anchor so in-page Home links scroll to top -->
+  <section id="home" class="home-anchor" aria-label="Home" role="region" tabindex="-1"></section>
   <main>
     <section class="hero section-hero" aria-labelledby="hero-heading">
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Welcome to CDDS</p>
-          <h1 id="hero-heading">Building Digital Solutions, Empowering African Businesses</h1>
+          <h2 class="site-meaning">CDDS — Building Digital Solutions, Empowering African Businesses</h2>
+          <h1 id="hero-heading">CDDS - Complete Digital Design Solutions</h1>
           <p class="hero-text">We design and develop world-class websites, mobile apps, and digital platforms for businesses across Ghana and Africa.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#services">Explore Our Services</a>
-            <a class="button button-accent" href="#contact">Get a Free Quote</a>
+            <a class="button button-accent" data-project="">Get a Free Quote</a>
           </div>
         </div>
         <div class="hero-media">
@@ -155,7 +158,7 @@
       <div class="container split-grid">
         <div class="image-panel">
           <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900" alt="Team collaborating around a laptop" loading="lazy">
-          <div class="badge">5+ Years Experience</div>
+          <div class="badge">2+ Years Experience</div>
         </div>
         <div class="content-panel">
           <p class="eyebrow orange">About CDDS</p>
@@ -163,17 +166,17 @@
           <p>CDDS is a full-service digital agency headquartered in Accra, Ghana. We partner with startups, SMEs, and enterprises to build scalable web and mobile solutions that drive real business growth.</p>
           <div class="stat-grid">
             <div class="stat-card">
-              <strong>120+</strong>
+              <strong>30+</strong>
               <span>Projects Delivered</span>
             </div>
             <div class="stat-card">
-              <strong>50+</strong>
+              <strong>25+</strong>
               <span>Happy Clients</span>
             </div>
           </div>
           <div class="panel-actions">
             <a class="button button-outline" href="#portfolio">Learn More</a>
-            <a class="contact-phone" href="tel:+233XX XXX XXXX">Call +233 XX XXX XXXX</a>
+            <a class="contact-phone" href="tel:0533496396">Call 0533496396</a>
           </div>
         </div>
       </div>
@@ -197,37 +200,37 @@
           <div class="service-icon"><img src="assets/icons/globe.svg" alt="Static Website icon" loading="lazy"></div>
           <h3 id="service-1-title">Static Website</h3>
           <p>Clean, fast HTML/CSS/JS websites with domain and hosting tailored for your brand.</p>
-          <a href="#contact">Learn More</a>
+          <a href="#contact" data-project="static">Learn More</a>
         </article>
         <article class="service-card" data-category="web design" aria-labelledby="service-2-title">
           <div class="service-icon"><img src="assets/icons/cog.svg" alt="Dynamic Web App icon" loading="lazy"></div>
           <h3 id="service-2-title">Dynamic Web App</h3>
           <p>PHP/Python backend applications with CMS and database integration for growth.</p>
-          <a href="#contact">Learn More</a>
+          <a href="#contact" data-project="dynamic">Learn More</a>
         </article>
         <article class="service-card" data-category="web design" aria-labelledby="service-3-title">
           <div class="service-icon"><img src="assets/icons/cart.svg" alt="E-Commerce Platform icon" loading="lazy"></div>
           <h3 id="service-3-title">E-Commerce Platform</h3>
           <p>Full-stack stores with payments, inventory management and secure user portals.</p>
-          <a href="#contact">Learn More</a>
+          <a href="#contact" data-project="ecommerce">Learn More</a>
         </article>
         <article class="service-card" data-category="mobile" aria-labelledby="service-4-title">
           <div class="service-icon"><img src="assets/icons/mobile.svg" alt="Mobile Application icon" loading="lazy"></div>
           <h3 id="service-4-title">Mobile Application</h3>
           <p>Cross-platform iOS and Android apps built with Flutter for modern businesses.</p>
-          <a href="#contact">Learn More</a>
+          <a href="#contact" data-project="mobile">Learn More</a>
         </article>
         <article class="service-card" data-category="security" aria-labelledby="service-5-title">
           <div class="service-icon"><img src="assets/icons/lock.svg" alt="Security Audit icon" loading="lazy"></div>
           <h3 id="service-5-title">Security Audit</h3>
           <p>Vulnerability assessments and network hardening to protect your digital assets.</p>
-          <a href="#contact">Learn More</a>
+          <a href="#contact" data-project="security">Learn More</a>
         </article>
         <article class="service-card" data-category="seo" aria-labelledby="service-6-title">
           <div class="service-icon"><img src="assets/icons/chart-line.svg" alt="SEO & Growth icon" loading="lazy"></div>
           <h3 id="service-6-title">SEO & Growth</h3>
           <p>Keyword research, on-page optimization, and content strategy for visibility.</p>
-          <a href="#contact">Learn More</a>
+          <a href="#contact" data-project="seo">Learn More</a>
         </article>
       </div>
     </section>
@@ -236,31 +239,50 @@
       <div class="container section-header">
         <h2>Ready Projects You Can Launch</h2>
       </div>
-      <div class="container portfolio-grid">
+      <div class="container portfolio-grid collapsed" id="portfolio-grid">
         <article class="project-card">
-          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=600" alt="E-commerce dashboard on laptop screen" loading="lazy">
+          <img src="assets/project_pics/e_com.png" alt="E-commerce dashboard on laptop screen" loading="lazy">
           <span class="project-tag">E-Commerce</span>
           <h3>MarketPulse Store</h3>
           <p>🇬🇭 Accra, Ghana</p>
-          <a href="#contact">View Project</a>
+          <div class="project-actions">
+            <a href="https://glowman-kaygee.github.io/e-com/">View Project</a>
+            <a class="button button-accent" href="#contact" data-project="ecommerce" data-project-name="MarketPulse Store">Get Project</a>
+          </div>
         </article>
         <article class="project-card">
-          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=600" alt="Team reviewing a SaaS platform design" loading="lazy">
-          <span class="project-tag">SaaS</span>
+          <img src="assets/project_pics/news_1.png" alt="Team reviewing a SaaS platform design" loading="lazy">
+          <span class="project-tag">Blog & News</span>
           <h3>GrowthAtlas CRM</h3>
           <p>🇰🇪 Nairobi, Kenya</p>
-          <a href="#contact">View Project</a>
+          <div class="project-actions">
+            <a href="assets/projects/news/index.html">View Project</a>
+            <a class="button button-accent" href="#contact" data-project="dynamic" data-project-name="GrowthAtlas CRM">Get Project</a>
+          </div>
         </article>
         <article class="project-card">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600" alt="Corporate website interface mockup" loading="lazy">
-          <span class="project-tag">Corporate</span>
-          <h3>Accra Enterprise</h3>
+          <img src="assets/project_pics/school.png" alt="Corporate website interface mockup" loading="lazy">
+          <span class="project-tag">School</span>
+          <h3>Savanna Ridge Academy</h3>
           <p>🇬🇭 Accra, Ghana</p>
-          <a href="#contact">View Project</a>
+          <div class="project-actions">
+            <a href="assets/projects/school/index.html">View Project</a>
+            <a class="button button-accent" href="#contact" data-project="static" data-project-name="Savanna Ridge Academy">Get Project</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <img src="assets/project_pics/resume.png" alt="Personal resume/blog interface" loading="lazy">
+          <span class="project-tag">Resume</span>
+          <h3>Personal Resume/blog</h3>
+          <p>🇬🇭 Accra, Ghana</p>
+          <div class="project-actions">
+            <a href="https://kgodwin-jang.github.io/portfolio/" target="_blank">View Project</a>
+            <a class="button button-accent" href="#contact" data-project="dynamic" data-project-name="Personal Resume/blog">Get Project</a>
+          </div>
         </article>
       </div>
       <div class="container cta-center">
-        <a class="button button-primary" href="#contact">View All Projects</a>
+        <button id="view-all-projects" class="button button-primary" type="button" aria-expanded="false" aria-controls="portfolio-grid">View All Projects</button>
       </div>
     </section>
 
@@ -302,72 +324,80 @@
           <p class="eyebrow">Transparent Pricing</p>
           <h2>Precision Packages, Powerful Results</h2>
           <p>Our service packages are designed to deliver clarity and value. If your project needs a custom scope, we are happy to tailor a quote.</p>
-          <a class="button button-accent" href="#contact">Request Custom Quote</a>
+          <a class="button button-accent" data-project="">Request Custom Quote</a>
         </div>
       </div>
       <div class="container pricing-grid">
         <article class="price-card">
-          <span class="price-badge">3,000 GHS</span>
-          <h3>Static Website</h3>
+          <span class="price-badge">₵3,500</span>
+          <h3>One-Pager</h3>
+          <p class="price-tagline">Best for landing pages, personal brands</p>
           <ul>
-            <li>Fast landing pages</li>
-            <li>Responsive design</li>
-            <li>Hosting setup</li>
+            <li>Up to 3 pages</li>
+            <li>Single-page conversion focus</li>
+            <li>Mobile-responsive layout</li>
+            <li>Built-in SEO foundations</li>
+            <li>Fast-loading lead capture</li>
           </ul>
+          <div class="card-actions"><a class="button button-primary" data-project="static">GET QUOTE</a></div>
         </article>
+
         <article class="price-card">
-          <span class="price-badge">5,500 GHS</span>
-          <h3>Dynamic Website</h3>
+          <span class="price-badge">₵4,500</span>
+          <h3>Startup</h3>
+          <p class="price-tagline">Perfect for startups and small businesses</p>
           <ul>
-            <li>CMS integration</li>
-            <li>Backend workflows</li>
-            <li>Performance tuned</li>
+            <li>Up to 5 pages</li>
+            <li>Integrated blog and lead capture</li>
+            <li>Newsletter signup form</li>
+            <li>Live chat support setup</li>
+            <li>Business authority branding</li>
           </ul>
+          <div class="card-actions"><a class="button button-primary" data-project="dynamic">GET QUOTE</a></div>
         </article>
+
         <article class="price-card">
-          <span class="price-badge">8,500 GHS</span>
-          <h3>E-Commerce Platform</h3>
+          <span class="price-badge">₵5,500</span>
+          <h3>SME</h3>
+          <p class="price-tagline">For SMEs & organisations ready to scale</p>
           <ul>
-            <li>Payments & carts</li>
-            <li>Inventory tools</li>
-            <li>User accounts</li>
+            <li>Up to 15 pages</li>
+            <li>Secure online payment integration</li>
+            <li>Automated booking and portals</li>
+            <li>Lead conversion automation</li>
+            <li>Performance optimization</li>
           </ul>
+          <div class="card-actions"><a class="button button-primary" data-project="dynamic">GET QUOTE</a></div>
         </article>
+
         <article class="price-card">
-          <span class="price-badge">12,000 GHS</span>
-          <h3>Mobile App</h3>
+          <span class="price-badge">₵6,500</span>
+          <h3>Pro (Ecommerce)</h3>
+          <p class="price-tagline">For brands ready to sell and scale online</p>
           <ul>
-            <li>iOS and Android</li>
-            <li>Cross-platform build</li>
-            <li>App store ready</li>
+            <li>Up to 25 pages</li>
+            <li>Complete ecommerce storefront</li>
+            <li>Inventory and order management</li>
+            <li>Local and international shipping</li>
+            <li>Customer account management</li>
           </ul>
+          <div class="card-actions"><a class="button button-primary" data-project="ecommerce">GET QUOTE</a></div>
         </article>
+
         <article class="price-card">
-          <span class="price-badge">2,000 GHS</span>
-          <h3>Security Audit</h3>
+          <span class="price-badge">₵8,500</span>
+          <h3>Cross-Platform App (iOS &amp; Android)</h3>
+          <p class="price-tagline">For businesses ready to launch on mobile</p>
           <ul>
-            <li>Risk assessment</li>
-            <li>Hardening plan</li>
-            <li>Compliance review</li>
+            <li>Single codebase for iOS &amp; Android</li>
+            <li>Native-feel UI/UX design</li>
+            <li>Push notifications setup</li>
+            <li>User authentication &amp; profiles</li>
+            <li>API/backend integration</li>
+            <li>App Store &amp; Play Store submission</li>
+            <li>3 months post-launch support</li>
           </ul>
-        </article>
-        <article class="price-card">
-          <span class="price-badge">500 GHS/mo</span>
-          <h3>Monthly Maintenance</h3>
-          <ul>
-            <li>Updates & backups</li>
-            <li>Performance checks</li>
-            <li>Small fixes</li>
-          </ul>
-        </article>
-        <article class="price-card">
-          <span class="price-badge">1,500 GHS/mo</span>
-          <h3>SEO Package</h3>
-          <ul>
-            <li>Keyword strategy</li>
-            <li>Content optimization</li>
-            <li>Performance monitoring</li>
-          </ul>
+          <div class="card-actions"><a class="button button-primary" data-project="mobile">GET QUOTE</a></div>
         </article>
       </div>
     </section>
@@ -378,32 +408,36 @@
       </div>
       <div class="container testimonial-carousel" aria-live="polite">
         <article class="testimonial active" data-index="0">
-          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150" alt="Portrait of Ama K" loading="lazy">
+          <img src="assets/testimonial_pics/Franka.jpg" alt="Portrait of Ama K" loading="lazy">
           <p>"CDDS built our online store in under 3 weeks. Sales went up 40% in the first month."</p>
-          <span class="testimonial-author">Ama K., Kumasi Fabrics Ltd</span>
+          <span class="testimonial-author">Franka N., Kumasi Fabrics Ltd</span>
         </article>
         <article class="testimonial" data-index="1">
-          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=150" alt="Portrait of Kwame A" loading="lazy">
+          <img src="assets/testimonial_pics/jang.jpg" alt="Portrait of Kwame A" loading="lazy">
           <p>"The most professional team I've worked with in Ghana. Highly recommend for any serious business."</p>
-          <span class="testimonial-author">Kwame A., TechStart Ghana</span>
+          <span class="testimonial-author">Jang K., TechStart Ghana</span>
         </article>
         <article class="testimonial" data-index="2">
-          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=150" alt="Portrait of Abena M" loading="lazy">
+          <img src="assets/testimonial_pics/sam.jpg" alt="Portrait of Abena M" loading="lazy">
           <p>"They redesigned our company website and our leads doubled. Worth every pesewa."</p>
-          <span class="testimonial-author">Abena M., MediCare Ghana</span>
+          <span class="testimonial-author">Mr.Samuel T., MediCare Ghana</span>
         </article>
       </div>
     </section>
 
     <section class="section faq-contact" id="contact">
       <div class="container split-grid">
-        <form class="contact-form" novalidate>
+        <form class="contact-form" action="https://formspree.io/f/mvznedpe" method="POST" novalidate>
+          <!-- Honeypot field to trap bots (should remain empty) -->
+          <input type="text" name="_gotcha" id="_gotcha" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
           <p class="eyebrow orange">Get In Touch</p>
           <h2>Start Your Project With CDDS</h2>
-          <label for="name">Name</label>
-          <input id="name" name="name" type="text" required>
           <label for="email">Email</label>
           <input id="email" name="email" type="email" required>
+          <div class="field-error" id="error-email" aria-live="polite"></div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" required>
+          <div class="field-error" id="error-phone" aria-live="polite"></div>
           <label for="project">Project Type</label>
           <select id="project" name="project" required>
             <option value="">Select an option</option>
@@ -414,8 +448,10 @@
             <option value="security">Security Audit</option>
             <option value="seo">SEO & Growth</option>
           </select>
+          <div class="field-error" id="error-project" aria-live="polite"></div>
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" required></textarea>
+          <div class="field-error" id="error-message" aria-live="polite"></div>
           <!-- reCAPTCHA placeholder: integrate with your site key and backend validation -->
           <button class="button button-accent" type="submit">Submit Request</button>
           <p class="form-status" aria-live="polite"></p>
@@ -448,10 +484,10 @@
 
     <section class="section stats-bar">
       <div class="container stats-grid">
-        <div><strong class="count" data-target="120">0</strong><span>Projects Built</span></div>
-        <div><strong class="count" data-target="5">0</strong><span>Years Experience</span></div>
-        <div><strong class="count" data-target="99">0</strong><span>Client Satisfaction</span></div>
-        <div><strong class="count" data-target="15">0</strong><span>Tech Stacks Used</span></div>
+        <div><strong class="count" data-target="30">0</strong><span>Projects Built</span></div>
+        <div><strong class="count" data-target="2">0</strong><span>Years Experience</span></div>
+        <div><strong class="count" data-target="50">0</strong><span>Client Satisfaction</span></div>
+        <div><strong class="count" data-target="10">0</strong><span>Tech Stacks Used</span></div>
       </div>
     </section>
 
@@ -522,12 +558,80 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2025 Complete Digital Design Solutions. All Rights Reserved.</p>
+      <p>© <span id="copyright-year">2026</span> Complete Digital Design Solutions. All Rights Reserved.</p>
       <p><a href="#" rel="noopener noreferrer">Privacy Policy</a> | <a href="#" rel="noopener noreferrer">Terms of Service</a></p>
     </div>
   </footer>
 
   <button class="back-to-top" type="button" aria-label="Scroll back to top">↑</button>
   <script src="script.js" defer></script>
+  <!-- Tawk.to widget loaded from local file to satisfy CSP -->
+  <script src="assets/tawk.js"></script>
+
+  <!-- Fallback chat button shown when Tawk fails to load for visitors -->
+  <style>
+    #tawk-fallback {
+      position: fixed;
+      left: 22px; /* show fallback on bottom-left */
+      bottom: 90px;
+      z-index: 2147483646;
+      display: none;
+      background: var(--color-highlight);
+      color: var(--color-white);
+      border: none;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 700;
+      box-shadow: 0 12px 40px rgba(15,23,42,0.18);
+      cursor: pointer;
+    }
+  </style>
+
+  <button id="tawk-fallback" type="button">Chat with us</button>
+
+  <script>
+    // Show fallback if Tawk doesn't initialize within 4s
+    (function(){
+      const fallback = document.getElementById('tawk-fallback');
+      function showFallback(){
+        if (window.Tawk_API && typeof window.Tawk_API === 'object') {
+          // Tawk loaded — hide fallback
+          fallback.style.display = 'none';
+          return;
+        }
+        fallback.style.display = 'block';
+      }
+
+      // Attempt to hide fallback if Tawk becomes available later
+      let checks = 0;
+      const interval = setInterval(() => {
+        if (window.Tawk_API && typeof window.Tawk_API === 'object') {
+          fallback.style.display = 'none';
+          clearInterval(interval);
+        }
+        checks += 1;
+        if (checks >= 6) { // after ~6s show fallback and stop checking
+          showFallback();
+          clearInterval(interval);
+        }
+      }, 1000);
+
+      // Fallback action: scroll to contact form as alternative to chat
+      fallback.addEventListener('click', function(){
+        const contact = document.getElementById('contact');
+        if (contact) contact.scrollIntoView({behavior:'smooth'});
+      });
+    })();
+  </script>
+  <!-- Contact form modal (moved into view when opened) -->
+  <div id="contact-modal" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+      <button class="modal-close" aria-label="Close contact form">×</button>
+      <div class="modal-body">
+        <h2 id="contact-modal-title">Get a Quote</h2>
+        <!-- The contact form will be moved here when the modal opens -->
+      </div>
+    </div>
+  </div>
 </body>
 </html>

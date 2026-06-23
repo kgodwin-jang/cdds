@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Savanna Ridge Academy — Northern Ghana Secondary School</title>
+  <meta name="description" content="Savanna Ridge Academy — Rooted in tradition, rising with purpose. A northern Ghana secondary school since 1978.">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Nunito+Sans:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN (configured inline below) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.268.0/dist/lucide.min.js"></script>
+
+  <style>
+    /* Custom design tokens matching brief */
+    :root{
+      --harmattan:#8B1A1A; /* primary */
+      --sahara:#C8922A; /* secondary */
+      --baobab:#2D6A3F; /* accent */
+      --parchment:#FAF3E0; /* background */
+      --text:#1A1208; /* primary text */
+      --muted:#7A6652; /* muted */
+    }
+    /* Tailwind config: set fonts + container sizing */
+    @layer base{
+      html,body{font-family:'Nunito Sans',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;}
+      h1,h2,h3,h4{font-family:'Playfair Display',serif;color:var(--text)}
+      .eyebrow{font-family:'Space Mono',monospace;color:var(--sahara);letter-spacing:0.1em;font-weight:700}
+      body{background:var(--parchment);color:var(--text)}
+    }
+
+    /* Hero gradient diagonal with photographic backdrop */
+    .hero-bg{
+      background-image: linear-gradient(135deg, rgba(139,26,26,0.85) 0%, rgba(200,146,42,0.75) 60%), url('https://source.unsplash.com/1600x900/?school,ghana');
+      background-size: cover;
+      background-position: center center;
+      background-blend-mode: overlay;
+    }
+
+    /* Stat counter card */
+    .stat{background:rgba(255,255,255,0.06);backdrop-filter:blur(6px)}
+
+    /* Card hover accent */
+    .card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.12);}
+    .card:hover .accent-top{border-top-color:var(--harmattan)}
+
+    /* marquee */
+    .marquee{display:flex;gap:16px;align-items:center}
+    .marquee-track{display:flex;gap:18px;animation:scroll 28s linear infinite}
+    @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* Modal-like focus for testimonial etc */
+    .quote-mark{color:var(--sahara);font-size:3rem}
+
+    /* small responsive tweaks */
+    @media (min-width:768px){
+      .container{max-width:1100px;margin-left:auto;margin-right:auto}
+    }
+    /* Demo modal */
+    .demo-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999}
+    .demo-card{background:var(--parchment);color:var(--text);max-width:640px;width:92%;padding:20px;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,0.25)}
+    .demo-card h3{font-family:'Playfair Display',serif;margin-bottom:8px}
+    .demo-card p{color:var(--muted)}
+    .demo-card .btn{display:inline-block;padding:10px 14px;border-radius:8px;margin-top:12px;font-weight:700}
+    .demo-card .btn-close{background:transparent;border:2px solid var(--harmattan);color:var(--harmattan)}
+    .demo-card .btn-ack{background:var(--harmattan);color:var(--parchment);border:2px solid var(--sahara)}
+  </style>
+
+</head>
+<body class="antialiased leading-relaxed">
+
+  <!-- NAV -->
+  <header id="site-header" class="fixed w-full top-0 z-40 transition-colors duration-300">
+    <nav class="bg-transparent" aria-label="Primary navigation">
+      <div class="container px-4 py-4 flex items-center justify-between">
+        <a href="#home" class="flex items-center gap-3" aria-label="Savanna Ridge Academy Home">
+          <!-- Shield crest SVG -->
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2L4 5v6c0 5 4 9 8 11 4-2 8-6 8-11V5l-8-3z" fill="var(--harmattan)"/>
+            <path d="M8 10c1-2 3-3 4-3s3 1 4 3" stroke="white" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <div class="text-sm font-semibold" style="color:var(--harmattan)">Savanna Ridge</div>
+            <div class="text-xs text-[var(--muted)]">Academy</div>
+          </div>
+        </a>
+
+        <button id="nav-toggle" class="md:hidden p-2" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle menu"> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"><path stroke="var(--text)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div id="primary-nav" class="hidden md:flex items-center gap-6 text-sm">
+          <a class="nav-link" href="#home">Home</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#academics">Academics</a>
+          <a class="nav-link" href="#admissions">Admissions</a>
+          <a class="nav-link" href="#news">News</a>
+          <a class="nav-link" href="#contact">Contact</a>
+          <a href="#apply" class="ml-2 inline-block px-4 py-2 rounded border-2" style="background:var(--harmattan);border-color:var(--sahara);color:var(--parchment);font-weight:700">Apply Now</a>
+        </div>
+      </div>
+      <!-- Mobile drawer -->
+      <div id="mobile-drawer" class="md:hidden bg-white hidden px-4 pb-6">
+        <div class="flex flex-col gap-3">
+          <a href="#home" class="py-2">Home</a>
+          <a href="#about" class="py-2">About</a>
+          <a href="#academics" class="py-2">Academics</a>
+          <a href="#admissions" class="py-2">Admissions</a>
+          <a href="#news" class="py-2">News</a>
+          <a href="#contact" class="py-2">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-24" id="home">
+    <!-- HERO -->
+    <section class="hero-bg text-white py-20">
+      <div class="container px-4">
+        <div class="md:flex md:items-center md:justify-between gap-8">
+          <div class="md:w-2/3">
+            <p class="eyebrow">EST. 1978</p>
+            <h1 class="text-3xl md:text-5xl leading-tight font-extrabold">Rooted in Tradition. Rising with Purpose.</h1>
+            <p class="mt-4 text-[var(--parchment)]/90 max-w-xl">Nurturing the next generation of northern Ghana's leaders since 1978.</p>
+            <div class="mt-6 flex gap-3">
+              <a href="#academics" class="px-4 py-2 rounded font-semibold" style="background:var(--sahara);color:var(--harmattan)">Explore Programmes</a>
+              <a href="#gallery" class="px-4 py-2 rounded border border-white/30" style="background:transparent">Take a Virtual Tour</a>
+            </div>
+          </div>
+          <div class="md:w-1/3 mt-8 md:mt-0">
+            <div class="bg-gradient-to-b from-white/8 to-transparent p-6 rounded-lg">
+              <div class="grid grid-cols-2 gap-3">
+                <div class="stat p-4 rounded card">
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="users" class="lucide w-6 h-6 text-[var(--parchment)]"></i>
+                    <div>
+                      <div class="text-2xl font-bold" data-count="1200">0</div>
+                      <div class="text-xs text-[var(--parchment)]/90">Students</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat p-4 rounded card">
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="users" class="lucide w-6 h-6 text-[var(--parchment)]"></i>
+                    <div>
+                      <div class="text-2xl font-bold" data-count="85">0</div>
+                      <div class="text-xs text-[var(--parchment)]/90">Teachers</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat p-4 rounded card">
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="calendar" class="lucide w-6 h-6 text-[var(--parchment)]"></i>
+                    <div>
+                      <div class="text-2xl font-bold" data-count="46">0</div>
+                      <div class="text-xs text-[var(--parchment)]/90">Years</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="stat p-4 rounded card">
+                  <div class="flex items-center gap-3">
+                    <i data-lucide="award" class="lucide w-6 h-6 text-[var(--parchment)]"></i>
+                    <div>
+                      <div class="text-2xl font-bold" data-count="98">0</div>
+                      <div class="text-xs text-[var(--parchment)]/90">WASSCE %</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT STRIP -->
+    <section id="about" class="py-16">
+      <div class="container px-4">
+        <div class="text-center mb-8">
+          <div class="eyebrow">WHO WE ARE</div>
+          <h2 class="text-2xl font-semibold">Vision · Mission · Values</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="p-6 bg-white rounded shadow-sm">
+            <div class="flex items-center gap-3 mb-3"><svg class="w-8 h-8 text-[var(--baobab)]" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="var(--baobab)"/></svg><h3 class="font-semibold">Vision</h3></div>
+            <p class="text-[var(--muted)]">To be the leading centre of academic and moral formation in northern Ghana, nurturing responsible leaders.</p>
+          </article>
+          <article class="p-6 bg-white rounded shadow-sm">
+            <div class="flex items-center gap-3 mb-3"><svg class="w-8 h-8 text-[var(--baobab)]" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" fill="var(--baobab)"/></svg><h3 class="font-semibold">Mission</h3></div>
+            <p class="text-[var(--muted)]">To educate the whole child through disciplined scholarship, practical skills and community service.</p>
+          </article>
+          <article class="p-6 bg-white rounded shadow-sm">
+            <div class="flex items-center gap-3 mb-3"><svg class="w-8 h-8 text-[var(--baobab)]" viewBox="0 0 24 24" fill="none"><path d="M12 2L7 12h10L12 2z" fill="var(--baobab)"/></svg><h3 class="font-semibold">Values</h3></div>
+            <p class="text-[var(--muted)]">Integrity, community service, resilience and respect for our heritage and environment.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACADEMICS -->
+    <section id="academics" class="py-16 bg-white">
+      <div class="container px-4">
+        <div class="mb-6">
+          <div class="eyebrow">ACADEMICS</div>
+          <h2 class="text-2xl font-semibold">Departments & Programmes</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Cards -->
+          <article class="p-6 rounded bg-[linear-gradient(180deg,#fff,#fff)] card border-t-4 accent-top" style="border-top-color:transparent;">
+            <div class="flex items-center gap-3 mb-3"><i data-lucide="flask" class="w-6 h-6 text-[var(--baobab)]"></i><h3 class="font-semibold">Sciences</h3></div>
+            <p class="text-[var(--muted)]">Laboratory-led science education preparing students for tertiary study and practical research.</p>
+            <a class="mt-4 inline-block text-[var(--sahara)] font-semibold" href="#contact">Learn More →</a>
+          </article>
+          <article class="p-6 rounded bg-white card border-t-4" style="border-top-color:transparent;">
+            <div class="flex items-center gap-3 mb-3"><i data-lucide="book-open" class="w-6 h-6 text-[var(--baobab)]"></i><h3 class="font-semibold">Arts & Humanities</h3></div>
+            <p class="text-[var(--muted)]">Rich literary and cultural programmes that deepen critical thinking and communication.</p>
+            <a class="mt-4 inline-block text-[var(--sahara)] font-semibold" href="#contact">Learn More →</a>
+          </article>
+          <article class="p-6 rounded bg-white card border-t-4" style="border-top-color:transparent;">
+            <div class="flex items-center gap-3 mb-3"><i data-lucide="briefcase" class="w-6 h-6 text-[var(--baobab)]"></i><h3 class="font-semibold">Business</h3></div>
+            <p class="text-[var(--muted)]">Practical commerce courses with entrepreneurship and financial literacy.</p>
+            <a class="mt-4 inline-block text-[var(--sahara)] font-semibold" href="#contact">Learn More →</a>
+          </article>
+          <article class="p-6 rounded bg-white card border-t-4" style="border-top-color:transparent;">
+            <div class="flex items-center gap-3 mb-3"><i data-lucide="tool" class="w-6 h-6 text-[var(--baobab)]"></i><h3 class="font-semibold">Technical & Vocational</h3></div>
+            <p class="text-[var(--muted)]">Hands-on training in carpentry, tailoring, and practical trades supporting local industry.</p>
+            <a class="mt-4 inline-block text-[var(--sahara)] font-semibold" href="#contact">Learn More →</a>
+          </article>
+          <article class="p-6 rounded bg-white card border-t-4" style="border-top-color:transparent;">
+            <div class="flex items-center gap-3 mb-3"><i data-lucide="cpu" class="w-6 h-6 text-[var(--baobab)]"></i><h3 class="font-semibold">ICT</h3></div>
+            <p class="text-[var(--muted)]">Computing fundamentals, coding clubs and applied ICT for modern workplaces.</p>
+            <a class="mt-4 inline-block text-[var(--sahara)] font-semibold" href="#contact">Learn More →</a>
+          </article>
+          <article class="p-6 rounded bg-white card border-t-4" style="border-top-color:transparent;">
+            <div class="flex items-center gap-3 mb-3"><i data-lucide="leaf" class="w-6 h-6 text-[var(--baobab)]"></i><h3 class="font-semibold">Agriculture</h3></div>
+            <p class="text-[var(--muted)]">Sustainable agriculture, farm management and practical horticulture for local livelihoods.</p>
+            <a class="mt-4 inline-block text-[var(--sahara)] font-semibold" href="#contact">Learn More →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS -->
+    <section id="news" class="py-16">
+      <div class="container px-4">
+        <div class="mb-6">
+          <div class="eyebrow">LATEST FROM THE CAMPUS</div>
+          <h2 class="text-2xl font-semibold">News & Announcements</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="p-4 rounded bg-white shadow-sm">
+            <img src="https://source.unsplash.com/800x600/?science,students" alt="Science fair" class="w-full h-36 object-cover rounded">
+            <div class="mt-3 text-xs text-[var(--muted)]">Campus Life — Sep 12, 2025</div>
+            <h3 class="mt-2 font-semibold">Science Fair Showcases Student Research</h3>
+            <p class="text-[var(--muted)] mt-1">Our annual fair highlighted projects from Physics, Chemistry and Biology.</p>
+          </article>
+          <article class="p-4 rounded bg-white shadow-sm">
+            <img src="https://source.unsplash.com/800x600/?school,open-day" alt="Open day" class="w-full h-36 object-cover rounded">
+            <div class="mt-3 text-xs text-[var(--muted)]">Admissions — Aug 3, 2025</div>
+            <h3 class="mt-2 font-semibold">Open Day Attracts Prospective Students</h3>
+            <p class="text-[var(--muted)] mt-1">Families toured our labs, fields and dormitories during the open day.</p>
+          </article>
+          <article class="p-4 rounded bg-white shadow-sm">
+            <img src="https://source.unsplash.com/800x600/?running,athletics" alt="Athletics" class="w-full h-36 object-cover rounded">
+            <div class="mt-3 text-xs text-[var(--muted)]">Sports — Jul 21, 2025</div>
+            <h3 class="mt-2 font-semibold">Regional Athletics Meet — Gold for Savanna Ridge</h3>
+            <p class="text-[var(--muted)] mt-1">Students excelled in track and field at the district competition.</p>
+          </article>
+        </div>
+        <div class="mt-6 text-center"><a class="px-4 py-2 rounded" style="background:var(--sahara);color:var(--harmattan);font-weight:700" href="#news">View All News</a></div>
+      </div>
+    </section>
+
+    <!-- ADMISSIONS BANNER -->
+    <section id="admissions" class="py-12" style="background:var(--harmattan);color:white">
+      <div class="container px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <h2 class="text-2xl font-bold">Admissions Open for 2025/2026 Academic Year</h2>
+          <p class="mt-2 text-[var(--parchment)]/90">Join a school rooted in community leadership and academic excellence.</p>
+          <div class="mt-4 flex items-center gap-3 text-sm">
+            <div class="flex items-center gap-2"><i data-lucide="file-text" class="w-5 h-5"></i><span>Apply → Interview → Admission</span></div>
+          </div>
+        </div>
+        <div>
+          <a class="px-4 py-2 rounded" style="background:var(--sahara);color:var(--harmattan);font-weight:700" href="#apply">Download Admission Form</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY MARQUEE -->
+    <section id="gallery" class="py-8">
+      <div class="container px-4 overflow-hidden">
+        <div class="marquee">
+            <div class="marquee-track" aria-hidden="true">
+            <!-- 8 tiles duplicated for seamless scroll using Unsplash themed queries -->
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?sports" alt="sports" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?laboratory,science" alt="lab" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?library,books" alt="library" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?arts,painting" alt="arts" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?church,chapel" alt="chapel" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?dormitory,boarding" alt="dormitory" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?assembly,students" alt="assembly" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?graduation" alt="graduation" class="w-full h-full object-cover"></div>
+            <!-- duplicate for seamless scroll -->
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?sports" alt="sports" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?laboratory,science" alt="lab" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?library,books" alt="library" class="w-full h-full object-cover"></div>
+            <div class="w-40 h-24 rounded overflow-hidden"><img src="https://source.unsplash.com/320x200/?arts,painting" alt="arts" class="w-full h-full object-cover"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-12 bg-white">
+      <div class="container px-4">
+        <div class="mb-6 text-center">
+          <div class="eyebrow">VOICES FROM OUR COMMUNITY</div>
+          <h2 class="text-2xl font-semibold">Testimonials</h2>
+        </div>
+        <div class="relative">
+          <div id="carousel" class="overflow-hidden">
+            <div class="flex transition-transform duration-500" id="carousel-track" style="transform:translateX(0)">
+              <article class="w-full md:w-1/3 p-6">
+                <div class="p-6 bg-[var(--parchment)] rounded shadow-sm">
+                  <div class="quote-mark">“</div>
+                  <p class="mt-2 text-[var(--muted)]">Savanna Ridge gave me confidence and the practical skills to succeed. The teachers truly care.</p>
+                  <div class="mt-4 font-semibold">Amina Kuzar — Class of 2022</div>
+                </div>
+              </article>
+              <article class="w-full md:w-1/3 p-6">
+                <div class="p-6 bg-[var(--parchment)] rounded shadow-sm">
+                  <div class="quote-mark">“</div>
+                  <p class="mt-2 text-[var(--muted)]">The agricultural programme connected classroom lessons to our community farms.</p>
+                  <div class="mt-4 font-semibold">Ibrahim Alhassan — Class of 2019</div>
+                </div>
+              </article>
+              <article class="w-full md:w-1/3 p-6">
+                <div class="p-6 bg-[var(--parchment)] rounded shadow-sm">
+                  <div class="quote-mark">“</div>
+                  <p class="mt-2 text-[var(--muted)]">Our son learned responsibility and discipline. We are grateful for the community spirit.</p>
+                  <div class="mt-4 font-semibold">Mrs. K. Damba — Parent</div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-center gap-2" id="carousel-dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER CTA -->
+    <section id="contact" class="py-12">
+      <div class="container px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center bg-white p-6 rounded shadow-sm">
+          <div>
+            <h3 class="text-xl font-semibold">Interested in joining Savanna Ridge?</h3>
+            <p class="text-[var(--muted)] mt-2">Contact our admissions office for application details and next steps.</p>
+          </div>
+          <div class="text-right md:text-left">
+            <a id="open-apply" class="inline-block px-4 py-2 rounded" style="background:var(--sahara);color:var(--harmattan);font-weight:700" href="#apply">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[var(--text)] text-[var(--parchment)] py-8">
+    <div class="container px-4 grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div>
+        <div class="flex items-center gap-3 mb-2"><svg width="36" height="36" viewBox="0 0 24 24"><path d="M12 2L4 5v6c0 5 4 9 8 11 4-2 8-6 8-11V5l-8-3z" fill="var(--sahara)"/></svg><div class="font-semibold">Savanna Ridge Academy</div></div>
+        <p class="text-[var(--parchment)]/90">Rooted in community, educating leaders since 1978.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold">Quick Links</h4>
+        <ul class="mt-2 text-[var(--parchment)]/90">
+          <li><a href="#about">About</a></li>
+          <li><a href="#academics">Academics</a></li>
+          <li><a href="#admissions">Admissions</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold">Contact</h4>
+        <ul class="mt-2 text-[var(--parchment)]/90">
+          <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Tamale, Northern Region</li>
+          <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> +233 20 000 0000</li>
+          <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> admissions@savannaridge.edu.gh</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold">Follow</h4>
+        <div class="flex gap-3 mt-2 text-[var(--parchment)]/90">
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="mt-6 border-t border-[rgba(255,255,255,0.06)] pt-4 text-center text-sm text-[var(--parchment)]/80">© Savanna Ridge Academy — Powered by CDDS</div>
+  </footer>
+  <!-- Demo-site modal shown on launch -->
+  <div id="demo-modal" class="demo-overlay" role="dialog" aria-modal="true" aria-labelledby="demo-title" style="display:none">
+    <div class="demo-card">
+      <h3 id="demo-title">Demo Site Notice</h3>
+      <p>This is a demo/staging site mockup. Some information, images and contact details are illustrative and not real. Please do not use this site as an authoritative source for admissions, contacts, or dates.</p>
+      <div class="mt-4">
+        <button id="demo-ok" class="btn btn-ack">Understood — Continue</button>
+        <button id="demo-close" class="btn btn-close ml-2">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // initialize lucide icons
+    if (window.lucide) lucide.createIcons();
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    navToggle && navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      if (mobileDrawer) mobileDrawer.classList.toggle('hidden');
+    });
+
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') && href.length>1) {
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if (el) el.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    });
+
+    // Sticky header background on scroll and active link highlighting
+    const header = document.getElementById('site-header');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', ()=>{
+      if (window.scrollY>40) header.querySelector('nav').classList.add('bg-white','shadow-md');
+      else header.querySelector('nav').classList.remove('bg-white','shadow-md');
+      // active link
+      document.querySelectorAll('section[id]').forEach(sec=>{
+        const rect = sec.getBoundingClientRect();
+        const id = sec.id;
+        const link = document.querySelector('.nav-link[href="#'+id+'"]');
+        if (link) link.classList.toggle('text-[var(--harmattan)] font-semibold', rect.top<=80 && rect.bottom>120);
+      })
+    });
+
+    // IntersectionObserver for reveal animations and counters
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100','translate-y-0');
+          // counters
+          entry.target.querySelectorAll('[data-count]').forEach(el=>{
+            if (el._counted) return; el._counted=true;
+            const target = Number(el.dataset.count);
+            let cur = 0; const step = Math.max(1, Math.floor(target/80));
+            const t = setInterval(()=>{ cur += step; if (cur>=target){ el.textContent = target + (target>=100?'+':''); clearInterval(t); } else el.textContent = cur; }, 20);
+          });
+        }
+      })
+    }, {threshold:0.2});
+
+    document.querySelectorAll('.stat, .card, section').forEach(el=>{
+      el.classList.add('opacity-0','translate-y-6','transition-all','duration-700');
+      io.observe(el);
+    });
+
+    // Carousel simple logic
+    const track = document.getElementById('carousel-track');
+    const dots = document.getElementById('carousel-dots');
+    if (track && dots) {
+      const slides = Array.from(track.children);
+      let idx=0;
+      function renderDots(){ dots.innerHTML=''; slides.forEach((s,i)=>{ const b=document.createElement('button'); b.className='w-3 h-3 rounded-full bg-[var(--muted)]/40'; b.addEventListener('click',()=>go(i)); dots.appendChild(b); }); update(); }
+      function update(){ Array.from(dots.children).forEach((b,i)=> b.style.opacity = i===idx? '1':'0.4'); track.style.transform = `translateX(-${idx*(100/slides.length)}%)`; }
+      function go(i){ idx = i%slides.length; update(); }
+      renderDots(); setInterval(()=>{ idx=(idx+1)%slides.length; update(); },5000);
+    }
+
+    // start marquee (no hover pause)
+    // (handled by CSS animation)
+
+    // enable lucide icons (re-run to ensure inserted icons are active)
+    if (window.lucide) lucide.createIcons();
+    // Show demo modal on first load
+    const demoModal = document.getElementById('demo-modal');
+    const demoOk = document.getElementById('demo-ok');
+    const demoClose = document.getElementById('demo-close');
+    function openDemo(){ if (demoModal) demoModal.style.display = 'flex'; }
+    function closeDemo(){ if (demoModal) demoModal.style.display = 'none'; }
+    // show shortly after load
+    window.addEventListener('load', ()=> setTimeout(openDemo, 600));
+    demoOk && demoOk.addEventListener('click', closeDemo);
+    demoClose && demoClose.addEventListener('click', closeDemo);
+  </script>
+</body>
+</html>
